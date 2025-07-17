@@ -20,15 +20,34 @@ Procedure
 */
 #include <stdio.h>
 #include <string.h>
-int main() {
+#include <math.h>
+char variablechosen[30];// holds user input
+char *getUserInput(){
 printf("Please Enter the variable type you would like to determine its range: Accepted types are( char, int, float, double, short, long)");//Get the variable type that the user wants to determine
-char variablechosen[30] = "hello"; // to holds user input
-//scanf("%19s", variablechosen );
-fgets(variablechosen, sizeof(variablechosen), stdin); // gets saves user input to its variable
+fgets(variablechosen, sizeof(variablechosen), stdin); // saves user input to its variable
 variablechosen[strcspn(variablechosen, "\n")] = 0;// removing the  line left by the user.
-printf("%s \n", variablechosen);
-printf("You have reached the end of the function");
-
-return 0;
-
+printf("You chose to find the size of %s \n", variablechosen);
+return variablechosen;
 }
+
+int main() {
+int testnumber= 0;
+int previousvalue = 0;
+int currentvalue= 0;
+for(int i =0; i <=  sizeof(int) * 8 ; i++)// keeps track of the bit that we are currently in
+{
+if(previousvalue<= currentvalue)// checking if the bit that was added has exceeded the no of bits allocated for the variable
+{
+  previousvalue = currentvalue;
+  printf("addding the %d bit \n", i);
+  currentvalue += pow(2, i);// adds a value that will take one more bit to be stored 
+  printf("the current value is %d", currentvalue);
+}
+else {
+  printf("The maximum value is %d", currentvalue -1 );
+}
+
+
+}};
+
+
